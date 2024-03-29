@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-k^w!5=k+&)*nnp$(5aiw_6k9lul6wh!p(apoo(l9ku^d!7_8x-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shenyafoma20032.fvds.ru/']
 
 
 # Application definition
@@ -148,13 +148,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',   'https://shenyafoma20032.fds.ru',
   'http://shenyafoma20032.fds.ru']
-
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:5173',
-    'https://shenyafoma20032.fds.ru',
-    'http://shenyafoma20032.fds.ru'# Разрешенный домен фронтенда
-]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
