@@ -22,7 +22,7 @@ from historyRDF import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('upload/', upload_text, name='upload_text'),
+    path('api/upload/', upload_text, name='upload_text'),
     path('api/generate/', download_file, name='generate_rdf'),
     path('api/login/', login_view, name='login'),
     path('api/download/<str:filename>/', views.download_file, name='download_file'),
