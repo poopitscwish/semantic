@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k^w!5=k+&)*nnp$(5aiw_6k9lul6wh!p(apoo(l9ku^d!7_8x-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shenyafoma20032.fvds.ru/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shenyafoma20032.fvds.ru']
 
 
 # Application definition
@@ -138,7 +138,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:5173',
   'https://shenyafoma20032.fds.ru',
