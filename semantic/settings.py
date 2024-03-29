@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k^w!5=k+&)*nnp$(5aiw_6k9lul6wh!p(apoo(l9ku^d!7_8x-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -141,18 +141,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:5173',
+  'https://shenyafoma20032.fds.ru',
+  'http://shenyafoma20032.fds.ru'
 )
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',   'https://shenyafoma20032.fds.ru',
+  'http://shenyafoma20032.fds.ru']
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:5173',  # Разрешенный домен фронтенда
+    'http://localhost:5173',
+    'https://shenyafoma20032.fds.ru',
+    'http://shenyafoma20032.fds.ru'# Разрешенный домен фронтенда
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:5173',  # Разрешенный домен для CSRF
+    'http://localhost:5173',
+    'https://shenyafoma20032.fds.ru',
+    'http://shenyafoma20032.fds.ru'# Разрешенный домен для CSRF
 ]
 AUTHENTICATION_BACKENDS = [
     'users.authentication.EmailAuthBackend',  # Укажите путь к вашему бэкенду
