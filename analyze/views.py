@@ -1,7 +1,7 @@
 import os
 from semantic import settings
 from .forms import TextUploadForm
-from scripts.natashaNLP import create_triple, generate_rdf
+from scripts.natashaNLP import create_triple, generate_rdf, summurize, get_entities
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
@@ -15,10 +15,27 @@ def upload_text(request):
         return JsonResponse(result, safe=False)
 @require_http_methods(["POST"])
 @csrf_exempt
+def summarize_text(request):
+        text_data = request.POST.get('text')
+        length = request.POST.get('length')
+        
+        if length == 'undefined' or length == '':
+            length = 600
+        else: 
+            length = int(length)
+        result = summurize(text_data, length)  
+        return JsonResponse(result, safe=False)
+@require_http_methods(["POST"])
+@csrf_exempt
+def getEntities(request):
+        text_data = request.POST.get('text')
+        result = get_entities(text_data)  
+        return JsonResponse(result, safe=False)
+@require_http_methods(["POST"])
+@csrf_exempt
 def download_file(request):
     print("POST")
     triples = json.loads(request.body)   
-    print(request)
     rdf_resuld = generate_rdf(triples)
     rdf_content = rdf_resuld.serialize(format="xml")
     rdf_directory = os.path.join(settings.BASE_DIR, 'historyRDF\\file') 

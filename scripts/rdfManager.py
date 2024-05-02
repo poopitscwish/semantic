@@ -1,10 +1,12 @@
 from transformers import T5ForConditionalGeneration, T5Tokenizer
-
+from transformers import pipeline
+ 
 model_path = "scripts\\YAP\\my_finetuned_model"
 model = T5ForConditionalGeneration.from_pretrained(model_path)
 tokenizer = T5Tokenizer.from_pretrained(model_path)
 
-input_file_path = "C:\\Users\\sheny\\Downloads\\про\\Пример.txt"
+
+input_file_path = "C:\\Users\\sheny\\Downloads\\про\\input(1).txt"
 with open(input_file_path, "r", encoding="utf-8") as file:
     input_text = file.read()
 input_ids = tokenizer.encode(input_text, return_tensors="pt") 

@@ -16,13 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from analyze.views import upload_text, download_file
+from analyze.views import upload_text, download_file, summarize_text, getEntities
 from users.views import login_view
 from historyRDF import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/upload/', upload_text, name='upload_text'),
+    path('api/summarize/', summarize_text, name='summarize_text'),
+    path('api/getEntities/', getEntities, name='getEntities'),
     path('api/generate/', download_file, name='generate_rdf'),
     path('api/login/', login_view, name='login'),
     path('api/download/<str:filename>/', views.download_file, name='download_file'),

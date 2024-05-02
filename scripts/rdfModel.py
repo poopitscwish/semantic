@@ -5,9 +5,7 @@ from torch.utils.data import DataLoader, Dataset
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from torch.optim import AdamW
 
-tokenizer = AutoTokenizer.from_pretrained("ai-forever/ruT5-base", legacy=False)
-model = AutoModelForSeq2SeqLM.from_pretrained("ai-forever/ruT5-base")
-num_epochs = 10
+
 def read_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read().strip()
@@ -23,8 +21,8 @@ class TextDataset(Dataset):
         return len(self.input_texts)
 
     def __getitem__(self, idx):
-        input_text = self.input_texts[idx]
-        output_text = self.output_texts[idx]
+        input_text = self.input_texts
+        output_text = self.output_texts
         
         # Токенизация текста
         input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids.squeeze()
@@ -36,8 +34,8 @@ class TextDataset(Dataset):
         }
 
 
-input_file_path = glob.glob("C:\\Users\\sheny\\Downloads\\про\\input*.txt")
-output_file_path = glob.glob("C:\\Users\\sheny\\Downloads\\про\\output*.txt")
+input_file_path = glob.glob("C:\\Users\\sheny\\Downloads\\про\\обучение\\input*.txt")
+output_file_path = glob.glob("C:\\Users\\sheny\\Downloads\\про\\обучение\\output*.txt")
 
 input_file_path.sort()
 output_file_path.sort()
@@ -45,7 +43,16 @@ output_file_path.sort()
 input_texts = [read_file(file_path) for file_path in input_file_path]
 output_texts = [read_file(file_path) for file_path in output_file_path]
 
-train_dataset = TextDataset(tokenizer, input_texts, output_texts)
+input_triples = input_texts[0]
+out_triples = output_texts[0]
+
+
+tokenizer = AutoTokenizer.from_pretrained("ai-forever/ruT5-base", legacy=False)
+model = AutoModelForSeq2SeqLM.from_pretrained("ai-forever/ruT5-base")
+
+
+num_epochs = 10
+train_dataset = TextDataset(tokenizer, input_triples, out_triples)
 
 train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 
@@ -73,6 +80,6 @@ for epoch in range(num_epochs):
         lr_scheduler.step()
         optimizer.zero_grad()
         print(f"Epoch: {epoch}, Loss: {loss.item()}")
-model.save_pretrained('scripts\\YAP\\my_finetuned_model')
-tokenizer.save_pretrained('scripts\\YAP\\my_finetuned_model')
+model.save_pretrained('scripts\\YAP\\my_finetuned_model2')
+tokenizer.save_pretrained('scripts\\YAP\\my_finetuned_model2')
 
